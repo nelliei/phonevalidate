@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>True Phone Number</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <style>
+    html {
+      margin: 5em;
+    }
+    #results {
+      margin: 0.5em;
+      background: rgba(230, 230, 230, 0.95);
+    }
+    .phone-details {
+      display: block;
+    }
+    .phone-property {
+      display: block;
+    }
+    h1 {
+      text-align: center;
+      background: rgba(230, 230, 230, 0.95);
+      padding: 4px;
+    }
+    h2 {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      color: rgba(101, 145, 153, 0.5);
+    }
+    </style>
+  </head>
+  <body>
+    <h1>True Phone Number Check</h1>
+    <h4>Here you can check if a phone number is valid and where<br> the call came from (conuntry)</h4>
+    <h5>Enter a number to check:</h5>
+    <div id="search">
+      <form id="search-form" class="row" active="/" method="GET" action="/">
+        <div class="col-auto">
+          <label for="phones" class="visually-hidden">phone number</label>
+          <input class="form-control" id="phones" name="phones" type="text" placeholder="+1 650-253-0000" tabindex=0 autofocus>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-secondary">search</button>
+        </div>
+      </form>
+    </div>
+    <h2>Results</h2>
+    <div id="results">
+      <div class="phone-details">
+        <div class="is_valid_number phone-property">Is it a valid number? {{valid}}</div>
+        <div class="is_possible_number phone-property">Is it a possible number? {{possible}}</div>
+        <div class="format_number_international phone-property">International format: {{format}}</div>
+        <div class="description_for_number phone-property">{{ description_for_number }}</div>
+        <div class="country_name_for_number phone-property">
+          {% if country %}
+            Country: {{country}}
+          {% endif %}
+        </div>
+        <div class="name_for_number phone-property">
+          {% if name_for_number %}
+            name: {{ name_for_number }}
+          {% endif %}
+        </div>
+        <div class="number_type phone-property">Type: {{type_number}}</div>
+      </div>
+    </div>
+  </body>
+</html>
