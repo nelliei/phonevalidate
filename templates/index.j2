@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone Number Checker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <style>
+      html {
+        margin: 5em;
+      }
+      body {
+        background-image: url('/static/crop.jpg');
+      }
+      #results {
+        padding: 1em;
+        background: rgba(255,255,255, 0.7);
+        border-radius: 10px;
+        color: rgb(40, 108, 91);
+      }
+      #phones {
+        color: rgb(35, 77, 51);
+        font-weight: 600;
+        border-radius: 5px;
+        border-color: rgb(14, 61, 33);
+        border-width: 2px;
+        background: rgba(255,255,255, 0.5);
+      }
+      .phone-details {
+        display: block;
+      }
+      .phone-property {
+        display: block;
+      }
+      .not_valid {
+        color: rgb(192, 96, 110);
+        font-style: italic;
+        font-size: 150%;
+        font-weight: 700;
+        margin-top: 10px;
+        fo
+      }
+      .btn {
+        color: rgb(35, 77, 51);
+        font-weight: 600;
+        border-radius: 5px;
+        border-color: rgb(14, 61, 33);
+        border-width: 2px;
+        background: rgba(255,255,255, 0.95);
+      }
+      h1 {
+        text-align: center;
+        background: rgba(255,255,255, 0.7);
+        padding: 4px;
+        color: rgb(40, 108, 91);
+        border-radius: 10px;
+      }
+      h2 {
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        color: honeydew;
+      }
+      h4 {
+        color: honeydew;
+      }
+      h5 {
+        color: honeydew;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Phone Number Checker</h1>
+    <h4>Here you can check if a phone number is valid.<br><br>If the number is a mobile number then you can <strong><em>call or whatsapp it</em></strong> directly from the app.</h4>
+    <h5>Enter a number</h5>
+    <div id="search">
+      <form id="search-form" class="row" active="/" method="GET" action="/">
+        <div class="col-auto">
+          <label for="phones" class="visually-hidden">phone number</label>
+          <input class="form-control" id="phones" name="phones" type="text" placeholder="+1 650-253-0000" tabindex=0 autofocus>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn">check</button>
+        </div>
+      </form>
+    </div>
+    <div class="not_valid">
+      {% if not_valid %}
+        {{not_valid}}
+      {% endif %}
+    </div>    
+    <h2>Results</h2>
+    <div id="results">
+      <div class="phone-details">
+        <div class="is_valid_number phone-property">Is it a valid number? {{valid}}</div>
+        <div class="is_possible_number phone-property">Is it a possible number? {{possible}}</div>
+        <div class="format_number_international phone-property">International format: {{format}}</div>
+        <div class="description_for_number phone-property">{{ description_for_number }}</div>
+        <div class="country_name_for_number phone-property">
+          {% if country %}
+            Country: {{country}}
+          {% endif %}
+        </div>
+        <div class="name_for_number phone-property">
+          {% if name_for_number %}
+            name: {{ name_for_number }}
+          {% endif %}
+        </div>
+        <div class="number_type phone-property">Type: {{type_number}}</div>
+      </div>
+      <div>
+        <a href="{{tel}}">Call {{format}}</a>
+      </div>
+      <div>
+        {% if type_number == 'mobile' %}
+          <a href="{{whatsapp}}">send a whatsapp message to: {{format}}</a>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
